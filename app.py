@@ -22,5 +22,11 @@ def index(name, location):
     db.session.commit()
     return '<h1>Added New User!</h1>'
 
+@app.route('/<name>')
+def get_user(name):
+    user = User.query.filter_by(name=name).first()
+    return f'<h1>The user is located in: { user.location }</h1>'
+
+
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=8080, debug=True)
